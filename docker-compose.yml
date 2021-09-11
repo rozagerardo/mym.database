@@ -1,0 +1,38 @@
+version: '3'
+
+# networks:
+  # mym:
+  #   driver: bridge
+
+services:
+  # odoo-svc:
+  #   image: 'odoo:${TAG:-14}'
+  #   restart: on-failure
+  #   networks:
+  #     - mym
+  #   environment:
+  #     - HOST=postgres-svc
+  #     - USER=mymadmin
+  #     - PASSWORD=nzpass
+  #   ports:
+  #     - '8069:8069'
+  #   volumes:
+  #     - ./odoo-data:/var/lib/odoo
+  #     - ./odoo-config:/etc/odoo
+  #     - ./odoo-addons:/mnt/extra-addons
+  #   depends_on:
+  #     - postgres-svc
+
+  postgres-svc:
+    image: 'postgres:9.4'
+    restart: on-failure
+    # networks:
+    #   - mym
+    environment:
+      - POSTGRES_USER=mymadmin
+      - POSTGRES_PASSWORD=nzpass
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./mym-db:/var/lib/postgresql/data
