@@ -23,7 +23,7 @@ services:
   #   depends_on:
   #     - postgres-svc
 
-  postgres-svc:
+  mym-db:
     image: 'postgres:9.4'
     restart: on-failure
     # networks:
